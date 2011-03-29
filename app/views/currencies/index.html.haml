@@ -7,5 +7,5 @@
   %tr
     - for currency in @currencies
       %tr
-        %td= currency.name
+        %td= link_to currency.name, currency_countries_path(currency.code)
         %td= currency.code
