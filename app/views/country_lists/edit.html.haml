@@ -1,0 +1,14 @@
+- title "#{@currency.name} / Countries"
+
+= form_for @currency, :url => currency_country_list_path(@currency.code) do |form|
+  = form.error_messages
+
+  = form.fields_for :appointments, @appointments do |appointment_fields|
+    %ul.countries
+      %li
+        = appointment_fields.check_box :visited
+        = appointment_fields.label :visited, appointment_fields.object.country.name
+
+  .buttons
+    = link_to 'Back', currencies_path
+    = form.submit 'Save'

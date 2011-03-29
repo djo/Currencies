@@ -77,3 +77,16 @@ a {
 table tbody tr td, table tbody tr th {
   padding-right: 1em;
 }
+
+form ul.countries {
+    padding-left: 1em;
+    list-style-type: none;
+}
+
+form .buttons {
+    margin-top: 1.5em;
+}
+
+form .buttons a {
+    margin-right: 0.5em;
+}

@@ -5,8 +5,8 @@ describe CountryListsController do
 
   let(:currency) { Factory :currency }
 
-  it "index action should render show template" do
-    get :show, :currency_id => currency.code
-    response.should render_template(:show)
+  it "edit action should render edit template" do
+    get :edit, :currency_id => currency.code
+    response.should render_template(:edit)
   end
 end
