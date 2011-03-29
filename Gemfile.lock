@@ -47,6 +47,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    mocha (0.9.12)
     mysql2 (0.2.6)
     nifty-generators (0.4.6)
     nokogiri (1.4.4)
@@ -99,6 +100,7 @@ PLATFORMS
 
 DEPENDENCIES
   haml
+  mocha
   mysql2
   nifty-generators
   nokogiri

@@ -73,3 +73,7 @@ a {
 .error_messages ul {
   margin: 0;
 }
+
+table tbody tr td, table tbody tr th {
+  padding-right: 1em;
+}
