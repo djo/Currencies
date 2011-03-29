@@ -1,12 +1,17 @@
-class CurrenciesLoader
+class CurrencyBuilder
   WSDL_PATH = 'http://www.webservicex.net/country.asmx?WSDL'
 
-  def self.process
-    loader = new
-    loader.do
+  def self.load
+    builder = new
+    builder.fetch
   end
 
-  def do
+  def self.create_euro
+    builder = new
+    builder.build_euro
+  end
+
+  def fetch
     begin
       client = Savon::Client.new { wsdl.document = WSDL_PATH }
       response = client.request :get_currencies
@@ -16,6 +21,20 @@ class CurrenciesLoader
     rescue Exception => e
       puts "Currencies Loader Exception: #{e.message}"
     end
+  end
+
+  def build_euro
+    currency = build Currency, 'EUR', 'Euro'
+
+    belgium = build Country, 'BE', 'Belgium'
+    france  = build Country, 'FR', 'France'
+    germany = build Country, 'DE', 'Germany'
+    italy   = build Country, 'IT', 'Italy'
+
+    store_appointment belgium, currency
+    store_appointment france, currency
+    store_appointment germany, currency
+    store_appointment italy, currency
   end
 
   private
@@ -30,9 +49,15 @@ class CurrenciesLoader
   end
 
   def store(hash)
+    country = build Country, hash[:country_code], hash[:country_name]
+    currency = build Currency, hash[:currency_code], hash[:currency_name]
+    store_appointment country, currency
+  end
+
+  def store_appointment(country, currency)
     appointment = Appointment.new
-    appointment.country = build(Country, hash[:country_code], hash[:country_name])
-    appointment.currency = build(Currency, hash[:currency_code], hash[:currency_name])
+    appointment.country = country
+    appointment.currency = currency
     appointment.save
   end
 
