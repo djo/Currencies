@@ -5,6 +5,8 @@ gem 'rails', '3.0.3'
 gem 'mysql2'
 gem 'savon'
 gem 'nokogiri'
+gem 'haml'
+gem 'nifty-generators'
 
 group :test, :development do
   gem "rspec-rails", "~> 2.4"

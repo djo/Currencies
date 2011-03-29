@@ -36,6 +36,7 @@ GEM
       abstract (>= 1.0.0)
     gyoku (0.3.1)
       builder (>= 2.1.2)
+    haml (3.0.25)
     httpi (0.9.0)
       ntlm-http (>= 0.1.1)
       rack
@@ -47,6 +48,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.16)
     mysql2 (0.2.6)
+    nifty-generators (0.4.6)
     nokogiri (1.4.4)
     ntlm-http (0.1.1)
     polyglot (0.3.1)
@@ -96,7 +98,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  haml
   mysql2
+  nifty-generators
   nokogiri
   rails (= 3.0.3)
   rspec-rails (~> 2.4)
