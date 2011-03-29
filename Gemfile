@@ -10,6 +10,8 @@ gem 'nifty-generators'
 
 group :test, :development do
   gem "rspec-rails", "~> 2.4"
+  gem 'mocha'
+  gem 'factory_girl_rails'
 end
 
 # Bundle edge Rails instead:
@@ -37,4 +39,3 @@ end
 # group :development, :test do
 #   gem 'webrat'
 # end
-gem "mocha", :group => :test

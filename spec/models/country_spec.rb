@@ -1,5 +1,9 @@
 require 'spec_helper'
 
 describe Country do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject { Factory :country }
+
+  it "should be persisted" do
+    subject.should be_persisted
+  end
 end

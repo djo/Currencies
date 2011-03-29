@@ -1,5 +1,9 @@
 require 'spec_helper'
 
 describe Currency do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject { Factory :currency }
+
+  it "should be persisted" do
+    subject.should be_persisted
+  end
 end
