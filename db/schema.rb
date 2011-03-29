@@ -10,7 +10,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110329013026) do
+ActiveRecord::Schema.define(:version => 20110329013445) do
+
+  create_table "appointments", :force => true do |t|
+    t.boolean  "visited",     :default => false, :null => false
+    t.integer  "currency_id",                    :null => false
+    t.integer  "country_id",                     :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "appointments", ["country_id"], :name => "index_appointments_on_country_id"
+  add_index "appointments", ["currency_id"], :name => "index_appointments_on_currency_id"
 
   create_table "countries", :force => true do |t|
     t.string   "name",       :null => false
