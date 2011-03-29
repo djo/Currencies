@@ -1,7 +1,7 @@
-class CountriesController < ApplicationController
+class CountryListsController < ApplicationController
   before_filter :load_currency
 
-  def index
+  def show
     @countries = @currency.countries
   end
 

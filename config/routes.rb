@@ -2,7 +2,7 @@ Currencies::Application.routes.draw do
   root :to => 'currencies#index'
 
   resources :currencies, :only => :index do
-    resources :countries, :only => :index
+    resource :country_list, :only => :show
   end
 
   # The priority is based upon order of creation:
