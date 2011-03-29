@@ -4,6 +4,10 @@ gem 'rails', '3.0.3'
 
 gem 'mysql2'
 
+group :test, :development do
+  gem "rspec-rails", "~> 2.4"
+end
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
