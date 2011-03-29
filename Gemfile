@@ -3,6 +3,8 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.3'
 
 gem 'mysql2'
+gem 'savon'
+gem 'nokogiri'
 
 group :test, :development do
   gem "rspec-rails", "~> 2.4"
