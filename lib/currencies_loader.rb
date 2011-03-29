@@ -22,25 +22,28 @@ class CurrenciesLoader
 
   def store_currencies(doc)
     doc.xpath('//Table').each do |node|
-      build(:country_name  => node.xpath('./Name').inner_text,
-            :country_code  => node.xpath('./CountryCode').inner_text,
-            :currency_code => node.xpath('./CurrencyCode').inner_text,
-            :currency_name => node.xpath('./Currency').inner_text)
+      store(:country_name  => node.xpath('./Name').inner_text.strip,
+            :country_code  => node.xpath('./CountryCode').inner_text.strip.upcase,
+            :currency_code => node.xpath('./CurrencyCode').inner_text.strip.upcase,
+            :currency_name => node.xpath('./Currency').inner_text.strip)
     end
   end
 
-  def build(hash)
+  def store(hash)
     appointment = Appointment.new
-    appointment.country = build_country(hash[:country_code], hash[:country_name])
-    appointment.currency = build_currency(hash[:currency_code], hash[:currency_name])
+    appointment.country = build(Country, hash[:country_code], hash[:country_name])
+    appointment.currency = build(Currency, hash[:currency_code], hash[:currency_name])
     appointment.save
   end
 
-  def build_country(code, name)
-    Country.find_or_create_by_code(:code => code.strip, :name => name.strip)
+  def build(model, code, name)
+    model.find_by_code(code) || create(model, code, name)
   end
 
-  def build_currency(code, name)
-    Currency.find_or_create_by_code(:code => code.strip, :name => name.strip)
+  def create(model, code, name)
+    object = model.new
+    object.send :attributes=, { :code => code, :name => name }, false
+    object.save
+    object
   end
 end
