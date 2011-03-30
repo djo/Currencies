@@ -90,3 +90,14 @@ form .buttons {
 form .buttons a {
     margin-right: 0.5em;
 }
+
+.description {
+    margin-bottom: 1em;
+    color: #333;
+}
+
+a.dashed {
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 1px dashed;
+}

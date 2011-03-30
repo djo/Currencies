@@ -8,9 +8,14 @@ describe Currency do
       @second_appointment = Factory :appointment, :currency => @currency
     end
 
+    it "should return only currencies of not visited countries" do
+      Factory :appointment, :currency => @currency, :visited => true
+      Currency.with_country_counts(true).should == [@currency]
+    end
+
     context "should return the currency" do
       specify "with 2 available countries" do
-        currency = Currency.with_country_counts.first
+        currency = Currency.with_country_counts(false).first
         currency.available_countries.should == 2
       end
 
@@ -28,11 +33,11 @@ describe Currency do
         @second_appointment.update_attributes :visited => true
         not_visited_countries_should_equal nil
       end
-    end
 
-    def not_visited_countries_should_equal(count)
-      currency = Currency.with_country_counts.first
-      currency.not_visited_countries.should == count
+      def not_visited_countries_should_equal(count)
+        currency = Currency.with_country_counts(false).first
+        currency.not_visited_countries.should == count
+      end
     end
   end
 end
