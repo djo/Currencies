@@ -2,6 +2,8 @@ class Currency < ActiveRecord::Base
   has_many :appointments, :dependent => :destroy
   has_many :countries, :through => :appointments
 
+  default_scope order('name ASC')
+
   attr_accessible :appointments_attributes
   accepts_nested_attributes_for :appointments
 
