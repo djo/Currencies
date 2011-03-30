@@ -14,3 +14,8 @@ Factory.define :appointment do |t|
   t.association :country
   t.association :currency
 end
+
+Factory.define :trip do |t|
+  t.description 'Trip description'
+  t.completed_at { Date.today }
+end

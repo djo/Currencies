@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110329013445) do
+ActiveRecord::Schema.define(:version => 20110330035418) do
 
   create_table "appointments", :force => true do |t|
     t.boolean  "visited",     :default => false, :null => false
@@ -33,6 +33,13 @@ ActiveRecord::Schema.define(:version => 20110329013445) do
   create_table "currencies", :force => true do |t|
     t.string   "name",       :null => false
     t.string   "code",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "trips", :force => true do |t|
+    t.text     "description",  :null => false
+    t.date     "completed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
