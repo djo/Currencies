@@ -1,20 +1,6 @@
-- title "New Trip"
+- title 'New Trip'
 
-= form_for @trip do |f|
-  = f.error_messages
-
-  %p
-    = f.label :completed_at, 'Date'
-    %br
-    = f.text_field :completed_at, :class => 'date'
-  %p
-    = f.label :description
-    %br
-    = f.text_area :description, :size => '50x5'
-
-  .buttons
-    = link_to 'Back', trips_path
-    = f.submit 'Save'
+= render 'trips/form', :trip => @trip
 
 - javascript 'jquery-ui-1.8.10.custom.min'
 - javascript 'app/trips/new'

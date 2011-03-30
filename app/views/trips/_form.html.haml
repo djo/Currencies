@@ -1,0 +1,23 @@
+= form_for trip do |form|
+  = form.error_messages
+
+  %p
+    = form.label :completed_at, 'Date'
+    %br
+    = form.text_field :completed_at, :class => 'date'
+  %p
+    = form.label :description
+    %br
+    = form.text_area :description, :size => '50x5'
+  %p
+    Countries
+
+    %ul
+      - Country.all.each do |country|
+        %li
+          = country_check_box_tag country
+          = label_tag dom_id(country), country.name
+
+  .buttons
+    = link_to 'Back', trips_path
+    = form.submit 'Save'
