@@ -6,7 +6,7 @@
   %p
     = f.label :completed_at, 'Date'
     %br
-    = f.date_select :completed_at
+    = f.text_field :completed_at, :class => 'date'
   %p
     = f.label :description
     %br
@@ -15,3 +15,6 @@
   .buttons
     = link_to 'Back', trips_path
     = f.submit 'Save'
+
+- javascript 'jquery-ui-1.8.10.custom.min'
+- javascript 'app/trips/new'
