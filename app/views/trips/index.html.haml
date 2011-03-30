@@ -1,12 +1,10 @@
 - title 'Trips'
 
-- @trips.each do |trip|
-  .trip
-    = trip.description
-    %br
-    =l trip.completed_at, :format => :long
-    %br
-    = "Countries: #{countries trip}"
-    %br
+#trips
+  - @trips.each do |trip|
+    .trip
+      %h4= countries trip
+      = trip.description
+      .date=l trip.completed_at, :format => :long
 
 = link_to "New Trip", new_trip_path

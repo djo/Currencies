@@ -101,3 +101,23 @@ a.dashed {
     text-decoration: none;
     border-bottom: 1px dashed;
 }
+
+#trips .trip {
+    margin-bottom: 1.5em;
+    padding-bottom: 0.5em;
+    border-bottom: #eee solid 1px;
+}
+
+#trips .trip:last-child {
+    border-bottom: none;
+}
+
+#trips .trip h4 {
+    margin-bottom: 0.5em;
+}
+
+#trips .trip .date {
+    text-align: right;
+    font-style: italic;
+    color: #333;
+}

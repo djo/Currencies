@@ -15,7 +15,7 @@
     %ul
       - Country.all.each do |country|
         %li
-          = country_check_box_tag country
+          = country_check_box_tag country, country_ids
           = label_tag dom_id(country), country.name
 
   .buttons
