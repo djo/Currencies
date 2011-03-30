@@ -1,5 +1,5 @@
 class CurrenciesController < ApplicationController
   def index
-    @currencies = Currency.order :name
+    @currencies = Currency.with_country_counts.order :name
   end
 end

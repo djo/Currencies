@@ -4,8 +4,12 @@
   %tr
     %th Currency
     %th Code
+    %th Available countries
+    %th Not visited countries
   %tr
     - for currency in @currencies
       %tr
         %td= link_to currency.name, edit_currency_country_list_path(currency.code)
         %td= currency.code
+        %td= currency.available_countries
+        %td= currency.not_visited_countries
