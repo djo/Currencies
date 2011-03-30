@@ -1,0 +1,17 @@
+- title "New Trip"
+
+= form_for @trip do |f|
+  = f.error_messages
+
+  %p
+    = f.label :completed_at, 'Date'
+    %br
+    = f.date_select :completed_at
+  %p
+    = f.label :description
+    %br
+    = f.text_area :description, :size => '50x5'
+
+  .buttons
+    = link_to 'Back', trips_path
+    = f.submit 'Save'

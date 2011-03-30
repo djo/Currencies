@@ -5,6 +5,8 @@ Currencies::Application.routes.draw do
     resource :country_list, :only => [:edit, :update]
   end
 
+  resources :trips, :only => [:index, :new, :create]
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
