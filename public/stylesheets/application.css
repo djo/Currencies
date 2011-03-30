@@ -118,6 +118,12 @@ a.dashed {
 
 #trips .trip .date {
     text-align: right;
-    font-style: italic;
-    color: #333;
+    color: #666;
+}
+
+ul.country_list {
+    display: inline-block;
+    margin-top: 0;
+    padding-left: 0;
+    list-style-type: none;
 }
