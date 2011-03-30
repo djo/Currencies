@@ -10,7 +10,7 @@
     = form.text_area :description, :size => '50x5'
 
   - if countries.any?
-    = render 'trips/form/countries', :countries => countries
+    = render 'trips/form/countries', :countries => countries, :country_ids => country_ids
 
   .buttons
     = link_to 'Back', trips_path

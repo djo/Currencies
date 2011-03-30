@@ -12,6 +12,10 @@
 
   %body
     #container
+      #navigation
+        = link_to 'Currencies', currencies_path, :class => currency_pages_class
+        = link_to 'Trips', trips_path, :class => trip_pages_class
+
       - flash.each do |name, msg|
         = content_tag :div, msg, :id => "flash_#{name}"
 

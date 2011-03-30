@@ -22,9 +22,9 @@ a {
   width: 75%;
   margin: 0 auto;
   background-color: #FFF;
-  padding: 20px 40px;
+  padding: 25px 40px;
   border: solid 1px black;
-  margin-top: 20px;
+  margin-top: 45px;
 }
 
 #flash_notice, #flash_error, #flash_alert {
@@ -92,7 +92,7 @@ form .buttons a {
 }
 
 .description {
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
     color: #333;
 }
 
@@ -126,4 +126,25 @@ ul.country_list {
     margin-top: 0;
     padding-left: 0;
     list-style-type: none;
+}
+
+#navigation {
+    margin-top: -3.5em;
+    margin-bottom: 2em;
+}
+
+#navigation a {
+    text-decoration: none;
+    margin-right: 0.5em;
+    color: #6C6;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+#navigation a.active {
+    color: white;
+}
+
+#navigation a:hover {
+    text-decoration: underline;
 }
