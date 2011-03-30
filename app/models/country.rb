@@ -1,6 +1,8 @@
 class Country < ActiveRecord::Base
   has_many :appointments, :dependent => :destroy
   has_many :currencies, :through => :appointments
+  has_many :country_trips, :dependent => :destroy
+  has_many :trips, :through => :country_trips
 
   default_scope order('name ASC')
 

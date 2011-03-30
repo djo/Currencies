@@ -19,3 +19,8 @@ Factory.define :trip do |t|
   t.description 'Trip description'
   t.completed_at { Date.today }
 end
+
+Factory.define :country_trip do |t|
+  t.association :country
+  t.association :trip
+end

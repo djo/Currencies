@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110330035418) do
+ActiveRecord::Schema.define(:version => 20110330185549) do
 
   create_table "appointments", :force => true do |t|
     t.boolean  "visited",     :default => false, :null => false
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(:version => 20110330035418) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "country_trips", :force => true do |t|
+    t.integer  "country_id", :null => false
+    t.integer  "trip_id",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "country_trips", ["country_id", "trip_id"], :name => "index_country_trips_on_country_id_and_trip_id", :unique => true
 
   create_table "currencies", :force => true do |t|
     t.string   "name",       :null => false
