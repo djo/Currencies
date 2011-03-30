@@ -9,11 +9,11 @@ class Currency < ActiveRecord::Base
   validates :code, :presence => true, :uniqueness => true
 
   def self.with_country_counts
-    select('currencies.*, IFNULL(ac.appointments_count, 0) available_countries,
-                          IFNULL(nvc.appointments_count, 0) not_visited_countries').
-    joins('LEFT OUTER JOIN (SELECT currency_id, COUNT(*) appointments_count FROM appointments GROUP BY 1) ac
-           ON ac.currency_id = currencies.id').
-    joins('LEFT OUTER JOIN (SELECT currency_id, COUNT(*) appointments_count FROM appointments WHERE visited = 0 GROUP BY 1) nvc
-           ON nvc.currency_id = currencies.id')
+    select('currencies.*, ac.appointments_count AS available_countries, ' +
+                         'nvc.appointments_count AS not_visited_countries').
+    joins('LEFT OUTER JOIN (SELECT currency_id, COUNT(*) AS appointments_count FROM appointments GROUP BY 1) ac ' +
+          'ON ac.currency_id = currencies.id').
+    joins('LEFT OUTER JOIN (SELECT currency_id, COUNT(*) AS appointments_count FROM appointments WHERE visited = FALSE GROUP BY 1) nvc ' +
+          'ON nvc.currency_id = currencies.id')
   end
 end

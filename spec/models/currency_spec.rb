@@ -26,7 +26,7 @@ describe Currency do
       specify "with 0 not visited countries" do
         @first_appointment.update_attributes :visited => true
         @second_appointment.update_attributes :visited => true
-        not_visited_countries_should_equal 0
+        not_visited_countries_should_equal nil
       end
     end
 
