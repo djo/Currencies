@@ -1,3 +1,9 @@
+%strong Visited countries:
+= @summary[:visited_countries]
+%br
+%strong Dates:
+= trip_dates(@summary[:dates])
+
 #trips
   - @trips.each do |trip|
     .trip

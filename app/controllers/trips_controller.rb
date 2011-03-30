@@ -3,6 +3,7 @@ class TripsController < ApplicationController
 
   def index
     @trips = Trip.includes :countries
+    @summary = summary
   end
 
   def new
@@ -24,6 +25,11 @@ class TripsController < ApplicationController
 
   def build_country_ids
     @country_ids = Array(params[:country_ids])
+  end
+
+  def summary
+    { :visited_countries => CountryTrip.count(:country_id, :distinct => true),
+      :dates => Trip.dates }
   end
 
   def add_countries

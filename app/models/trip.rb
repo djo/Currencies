@@ -10,6 +10,8 @@ class Trip < ActiveRecord::Base
   validates :completed_at, :presence => true
 
   def self.dates
-    select('DISTINCT completed_at').order('completed_at ASC').map &:completed_at
+    unscoped.select('DISTINCT completed_at').
+             order('completed_at ASC').
+             map &:completed_at
   end
 end
