@@ -152,3 +152,7 @@ ul.country_list {
 #navigation a:hover {
     text-decoration: underline;
 }
+
+#navigation a.sign_in {
+    float: right;
+}
