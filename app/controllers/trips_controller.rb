@@ -1,4 +1,5 @@
 class TripsController < ApplicationController
+  before_filter :authenticate_user!, :only => [:new, :create]
   before_filter :build_country_ids, :only => [:new, :create]
 
   def index

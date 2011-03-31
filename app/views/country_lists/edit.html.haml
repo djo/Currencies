@@ -6,9 +6,10 @@
   = form.fields_for :appointments, @appointments do |appointment_fields|
     %ul.countries
       %li
-        = appointment_fields.check_box :visited
+        = appointment_fields.check_box :visited, :disabled => !user_signed_in?
         = appointment_fields.label :visited, appointment_fields.object.country.name
 
   .buttons
     = link_to 'Back', currencies_path
-    = form.submit 'Save'
+    - if user_signed_in?
+      = form.submit 'Save'

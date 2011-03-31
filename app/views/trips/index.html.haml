@@ -11,4 +11,5 @@
       = trip.description
       .date=l trip.completed_at, :format => :long
 
-= link_to "New Trip", new_trip_path
+- if user_signed_in?
+  = link_to "New Trip", new_trip_path

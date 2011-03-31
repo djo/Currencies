@@ -1,4 +1,5 @@
 class CountryListsController < ApplicationController
+  before_filter :authenticate_user!, :only => :update
   before_filter :load_currency
   before_filter :load_appointments, :only => :edit
 
@@ -26,6 +27,6 @@ class CountryListsController < ApplicationController
 
   def redirect_to_edit
     redirect_to edit_currency_country_list_path(@currency.code),
-                :notice => "Visited country list was changed."
+                :notice => "Visited country list successfully changed."
   end
 end
