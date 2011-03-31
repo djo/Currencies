@@ -7,6 +7,7 @@ gem 'savon'
 gem 'nokogiri'
 gem 'haml'
 gem 'nifty-generators'
+gem 'devise'
 
 group :test, :development do
   gem "rspec-rails", "~> 2.4"

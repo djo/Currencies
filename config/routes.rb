@@ -1,4 +1,6 @@
 Currencies::Application.routes.draw do
+  devise_for :users
+
   root :to => 'currencies#index'
 
   resources :currencies, :only => :index do

@@ -1,26 +1,31 @@
 Factory.sequence(:count) { |n| n }
 
-Factory.define :country do |t|
-  t.code { "US#{Factory.next(:count)}" }
-  t.name { "United States #{Factory.next(:count)}" }
+Factory.define :country do |f|
+  f.code { "US#{Factory.next(:count)}" }
+  f.name { "United States #{Factory.next(:count)}" }
 end
 
-Factory.define :currency do |t|
-  t.code { "USD#{Factory.next(:count)}" }
-  t.name { "Dollar #{Factory.next(:count)}" }
+Factory.define :currency do |f|
+  f.code { "USD#{Factory.next(:count)}" }
+  f.name { "Dollar #{Factory.next(:count)}" }
 end
 
-Factory.define :appointment do |t|
-  t.association :country
-  t.association :currency
+Factory.define :appointment do |f|
+  f.association :country
+  f.association :currency
 end
 
-Factory.define :trip do |t|
-  t.description 'Trip description'
-  t.completed_at { Date.today }
+Factory.define :trip do |f|
+  f.description 'Trip description'
+  f.completed_at { Date.today }
 end
 
-Factory.define :country_trip do |t|
-  t.association :country
-  t.association :trip
+Factory.define :country_trip do |f|
+  f.association :country
+  f.association :trip
+end
+
+Factory.define :user do |f|
+  f.email { "user#{Factory.next(:count)}@mail.com" }
+  f.password 'password'
 end
