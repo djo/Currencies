@@ -15,7 +15,7 @@ class TripsController < ApplicationController
 
     if @trip.save
       add_countries
-      redirect_to trips_url, :notice => "Trip was added."
+      redirect_to trips_url, :notice => "Trip successfully added."
     else
       render :action => 'new'
     end
