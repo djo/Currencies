@@ -1,0 +1,9 @@
+= link_to 'Currencies', currencies_path, :class => currency_pages_class
+= link_to 'Trips', trips_path, :class => trip_pages_class
+
+.login_menu
+  - if user_signed_in?
+    = current_user.email
+    = link_to 'Sign Out', destroy_user_session_path, :class => 'sign_in'
+  - else
+    = link_to 'Sign In', new_user_session_path, :class => 'sign_in'

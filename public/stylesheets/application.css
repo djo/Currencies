@@ -153,6 +153,12 @@ ul.country_list {
     text-decoration: underline;
 }
 
-#navigation a.sign_in {
+#navigation .login_menu {
+    display: inline-block;
     float: right;
+    color: white;
+}
+
+#navigation .login_menu a {
+    margin-left: 0.5em;
 }
