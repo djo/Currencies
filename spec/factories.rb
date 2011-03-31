@@ -28,4 +28,5 @@ end
 Factory.define :user do |f|
   f.email { "user#{Factory.next(:count)}@mail.com" }
   f.password 'password'
+  f.password_confirmation 'password'
 end
