@@ -1,0 +1,72 @@
+== Currencies
+
+Currencies helps to collect private currency collection. The applciation allows to identify all of the currencies that are available in the world and then to identify where in the world the currencies are located.
+
+== Installation
+
+=== Set up
+
+Set up the application with the standard way to install a rails app.
+
+=== Load the currencies
+
+The application uses the following web service to retrieve the data:
+
+http://www.webservicex.net/country.asmx
+
+To fetch the data run the rake task:
+
+  rake db:load_currencies
+
+Due to the web service is often unavailable you can get the Currencies Loader Exception. In this case just try again.
+
+To pass the acceptance test you should create Euro currency to the application:
+
+  rake db:create_euro_currency
+
+== Acceptance test
+
+These scenarios can help you to verify the applciation. You can pass it on the site:
+
+http://currencies.heroku.com 
+
+=== Identifying available currencies
+
+* Navigate your browser to the home page
+* You should see the list of available currencies in the world
+
+=== Identifying the countries that offer a particular currency
+
+* Choose on the home page the currency you are interested in
+* You should see a list of countries offering that currency
+
+=== Tracking visited countries
+
+* Navigate your browser to the page of a list of countries offering a currency
+* Selects the countries that you have visited for that currency and submit it
+
+=== Identifying the remaining countries from the currency list
+
+* Navigate your browser to the home page
+* You should see the list of currencies with "Available countries" and "Not visited countries" columns
+
+=== Filtering currencies from the list
+
+* You should see the link "Show currencies that still have countries to visit." on the home page
+* Click it to toggle the view
+* You should see currencies that still have countries to visit
+* Click the "Show all available currencies." to see all available currencies
+
+=== Tracking trips to specific countries
+
+* Navigate your browser to the trips page
+* You should see the list of trips with the summary at the top of the page
+* Sign in as an user to add a new trip
+* Use next email/password: "mr.wicked@mail.com"/"password"
+* Click the "New Trip" link to add a new trip on the trips page
+* You should see the trip form
+* Fill in that and select countries (for example Italy)
+* Submit that and you will see the newly trip in the list
+* Go to the Currencies page
+* Pick out some currency of your country of the trip (for example Euro of Italy)
+* You should see this country as visited
