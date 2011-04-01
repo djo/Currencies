@@ -12,7 +12,7 @@ Set up the application with the standard way to install a rails app.
 
 The application uses the following web service to retrieve the data:
 
-http://www.webservicex.net/country.asmx
+http://webservicex.net/country.asmx
 
 To fetch the data run the rake task:
 
@@ -26,9 +26,7 @@ To pass the acceptance test you should create Euro currency to the application:
 
 == Acceptance test
 
-These scenarios can help you to verify the applciation. You can pass it on the site:
-
-http://currencies.heroku.com 
+These scenarios can help you to verify the applciation. You can pass it on the demo site: http://currencies.heroku.com 
 
 === Identifying available currencies
 
