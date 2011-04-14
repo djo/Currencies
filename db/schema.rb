@@ -10,25 +10,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110331194858) do
+ActiveRecord::Schema.define(:version => 20110414220342) do
 
   create_table "appointments", :force => true do |t|
-    t.boolean  "visited",     :default => false, :null => false
-    t.integer  "currency_id",                    :null => false
-    t.integer  "country_id",                     :null => false
+    t.integer  "country_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id",    :null => false
   end
 
+  add_index "appointments", ["country_id", "user_id"], :name => "index_appointments_on_country_id_and_user_id", :unique => true
   add_index "appointments", ["country_id"], :name => "index_appointments_on_country_id"
-  add_index "appointments", ["currency_id"], :name => "index_appointments_on_currency_id"
 
   create_table "countries", :force => true do |t|
-    t.string   "name",       :null => false
-    t.string   "code",       :null => false
+    t.string   "name",        :null => false
+    t.string   "code",        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "currency_id", :null => false
   end
+
+  add_index "countries", ["currency_id"], :name => "index_countries_on_currency_id"
+  add_index "countries", ["name"], :name => "index_countries_on_name"
 
   create_table "country_trips", :force => true do |t|
     t.integer  "country_id", :null => false
@@ -51,7 +54,10 @@ ActiveRecord::Schema.define(:version => 20110331194858) do
     t.date     "completed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id",      :null => false
   end
+
+  add_index "trips", ["user_id"], :name => "index_trips_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                              :default => "", :null => false
