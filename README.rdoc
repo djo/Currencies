@@ -9,6 +9,7 @@ Currencies helps to collect private currency collection. The applciation allows 
 Set up the application with the standard way to install a rails app.
 
 The application uses the following web service to retrieve the data: http://webservicex.net/country.asmx
+
 Due to the web service is often unavailable you can get the Currencies Loader Exception. In this case just try ivoke the task:
 
   rake db:load_currencies
