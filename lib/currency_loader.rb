@@ -1,14 +1,9 @@
-class CurrencyBuilder
+class CurrencyLoader
   WSDL_PATH = 'http://www.webservicex.net/country.asmx?WSDL'
 
   def self.load
     builder = new
     builder.fetch
-  end
-
-  def self.create_euro
-    builder = new
-    builder.build_euro
   end
 
   def fetch
@@ -21,20 +16,6 @@ class CurrencyBuilder
     rescue Exception => e
       puts "Currencies Loader Exception: #{e.message}"
     end
-  end
-
-  def build_euro
-    currency = build Currency, 'EUR', 'Euro'
-
-    belgium = build Country, 'BE', 'Belgium'
-    france  = build Country, 'FR', 'France'
-    germany = build Country, 'DE', 'Germany'
-    italy   = build Country, 'IT', 'Italy'
-
-    store_appointment belgium, currency
-    store_appointment france, currency
-    store_appointment germany, currency
-    store_appointment italy, currency
   end
 
   private

@@ -8,21 +8,14 @@ Currencies helps to collect private currency collection. The applciation allows 
 
 Set up the application with the standard way to install a rails app.
 
-=== Load the currencies
-
 The application uses the following web service to retrieve the data:
 
 http://webservicex.net/country.asmx
 
-To fetch the data run the rake task:
+Due to the web service is often unavailable you can get the Currencies Loader Exception.
+In this case just try ivoke the task:
 
   rake db:load_currencies
-
-Due to the web service is often unavailable you can get the Currencies Loader Exception. In this case just try again.
-
-To pass the acceptance test you should create Euro currency to the application:
-
-  rake db:create_euro_currency
 
 == Acceptance test
 
@@ -60,11 +53,10 @@ These scenarios can help you to verify the applciation. You can pass it on the d
 * Navigate your browser to the trips page
 * You should see the list of trips with the summary at the top of the page
 * Sign in as an user to add a new trip
-* Use next email/password: "mr.wicked@mail.com"/"password"
 * Click the "New Trip" link to add a new trip on the trips page
 * You should see the trip form
-* Fill in that and select countries (for example Italy)
+* Fill in that and select countries
 * Submit that and you will see the newly trip in the list
 * Go to the Currencies page
-* Pick out some currency of your country of the trip (for example Euro of Italy)
+* Pick out some currency of your country of the trip
 * You should see this country as visited
