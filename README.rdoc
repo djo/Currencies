@@ -4,8 +4,6 @@ Currencies helps to collect private currency collection. The applciation allows 
 
 == Installation
 
-=== Set up
-
 Set up the application with the standard way to install a rails app.
 
 The application uses the following web service to retrieve the data: http://webservicex.net/country.asmx
