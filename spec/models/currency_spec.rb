@@ -1,9 +1,13 @@
 require 'spec_helper'
 
 describe Currency do
-  subject { Factory :currency }
+  it { should have_many(:countries).dependent(:destroy) }
 
-  it "should be persisted" do
-    subject.should be_persisted
-  end
+  it { should allow_mass_assignment_of(:code) }
+  it { should allow_mass_assignment_of(:name) }
+
+  it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:code) }
+
+  it { should have_db_index(:name) }
 end

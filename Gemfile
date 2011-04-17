@@ -12,6 +12,7 @@ gem 'devise'
 group :test, :development do
   gem "rspec-rails", "~> 2.4"
   gem 'mocha'
+  gem 'shoulda-matchers'
   gem 'factory_girl_rails'
 end
 

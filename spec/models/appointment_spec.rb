@@ -1,9 +1,11 @@
 require 'spec_helper'
 
 describe Appointment do
-  subject { Factory :appointment }
+  it { should belong_to(:country) }
+  it { should belong_to(:user) }
 
-  it "should be persisted" do
-    subject.should be_persisted
-  end
+  it { should validate_presence_of(:country_id) }
+  it { should validate_presence_of(:user_id) }
+
+  it { should have_db_index([:country_id, :user_id]).unique(true) }
 end
