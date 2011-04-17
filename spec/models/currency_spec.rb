@@ -11,26 +11,46 @@ describe Currency do
 
   it { should have_db_index(:name) }
 
-  describe ".grouped_by_name" do
+  context "[grouped by name]" do
     before do
-      @dollar1 = Factory :currency, :name => 'Dollar'
-      @dollar2 = Factory :currency, :name => 'Dollar'
-      @euro = Factory :currency, :name => 'Euro'
+      @user = Factory :user
 
-      Factory :country, :currency => @dollar1
-      Factory :country, :currency => @dollar1
-      Factory :country, :currency => @dollar2
-      Factory :country, :currency => @euro
+      dollar1 = Factory :currency, :name => 'Dollar'
+      dollar2 = Factory :currency, :name => 'Dollar'
+      euro = Factory :currency, :name => 'Euro'
+
+      @usa = Factory :country, :currency => dollar1
+      @canada = Factory :country, :currency => dollar2
+      @belgium = Factory :country, :currency => euro
     end
 
-    it "should return grouped currencies with country counts" do
-      dollar, euro = Currency.grouped_by_name
+    describe ".grouped_by_name" do
+      it "should return grouped currencies with available country counts" do
+        dollar, euro = Currency.grouped_by_name
 
-      dollar.name.should == 'Dollar'
-      dollar.country_count.should == 3
+        dollar.name.should == 'Dollar'
+        dollar.available_country_count.should == 2
 
-      euro.name.should == 'Euro'
-      euro.country_count.should == 1
+        euro.name.should == 'Euro'
+        euro.available_country_count.should == 1
+      end
+    end
+
+    describe ".grouped_by_name_for" do
+      it "should return grouped currencies with available and remaining country counts" do
+        @user.countries << @usa
+
+        dollar, euro = Currency.grouped_by_name_for(@user)
+
+        dollar.name.should == 'Dollar'
+        p dollar.available_country_count
+        dollar.available_country_count.should == 2
+        dollar.remaining_country_count.should == 1
+
+        euro.name.should == 'Euro'
+        euro.available_country_count.should == 1
+        dollar.remaining_country_count.should == 1
+      end
     end
   end
 end

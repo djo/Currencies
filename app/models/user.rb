@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :appointments, :dependent => :destroy
+  has_many :countries, :through => :appointments
   has_many :trips, :dependent => :destroy
 
   devise :database_authenticatable, :rememberable, :trackable, :validatable
