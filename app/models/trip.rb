@@ -8,7 +8,7 @@ class Trip < ActiveRecord::Base
 
   attr_accessible :description, :completed_at
 
-  validates :user, :presence => true
+  validates :user_id, :presence => true
   validates :description, :presence => true
   validates :completed_at, :presence => true
 

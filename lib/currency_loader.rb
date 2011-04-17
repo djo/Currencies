@@ -30,26 +30,15 @@ class CurrencyLoader
   end
 
   def store(hash)
-    country = build Country, hash[:country_code], hash[:country_name]
-    currency = build Currency, hash[:currency_code], hash[:currency_name]
-    store_appointment country, currency
+    currency = build_currency hash[:currency_code], hash[:currency_name]
+    build_country currency, hash[:country_code], hash[:country_name]
   end
 
-  def store_appointment(country, currency)
-    appointment = Appointment.new
-    appointment.country = country
-    appointment.currency = currency
-    appointment.save
+  def build_currency(code, name)
+    Currency.find_by_code(code) || Currency.create(:code => code, :name => name)
   end
 
-  def build(model, code, name)
-    model.find_by_code(code) || create(model, code, name)
-  end
-
-  def create(model, code, name)
-    object = model.new
-    object.send :attributes=, { :code => code, :name => name }, false
-    object.save
-    object
+  def build_country(currency, code, name)
+    Country.create(:currency => currency, :code => code, :name => name)
   end
 end

@@ -3,7 +3,7 @@ class Currency < ActiveRecord::Base
 
   default_scope order('name ASC')
 
-  attr_accessible
+  attr_accessible :name, :code
 
   validates :name, :presence => true
   validates :code, :presence => true, :uniqueness => true

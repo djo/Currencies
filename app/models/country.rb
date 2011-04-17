@@ -6,9 +6,9 @@ class Country < ActiveRecord::Base
 
   default_scope order('name ASC')
 
-  attr_accessible
+  attr_accessible :currency, :name, :code
 
-  validates :currency, :presence => true
+  validates :currency_id, :presence => true
   validates :name, :presence => true
   validates :code, :presence => true, :uniqueness => true
 end
