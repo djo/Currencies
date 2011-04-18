@@ -1,11 +1,17 @@
 module GroupedByNameCurrencies
   # Returns grouped currencies with available country counts
-  def grouped_by_name
-    grouped_by_name_query
+  # And remaining country counts for user
+  def grouped_by_name(user = nil, options = {})
+    if user
+      grouped_by_name_for_user(user, options)
+    else
+      grouped_by_name_query
+    end
   end
 
-  # Returns grouped currencies with available and remaining country counts for user
-  def grouped_by_name_for(user, options = {})
+  private
+
+  def grouped_by_name_for_user(user, options = {})
     # Visited countries ids
     country_ids = user.appointments.map &:country_id
 
@@ -25,8 +31,6 @@ module GroupedByNameCurrencies
 
     currencies
   end
-
-  private
 
   def grouped_by_name_query
     select('name, SUM(ac_count) AS available_country_count').
