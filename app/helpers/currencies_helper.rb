@@ -1,6 +1,6 @@
 module CurrenciesHelper
   def currency_description
-    if params[:filter] == 'not_visited'
+    if action_name == 'remaining'
       render 'currencies/description/not_visited_countries'
     else
       render 'currencies/description/available_currencies'

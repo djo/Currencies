@@ -2,37 +2,48 @@ module GroupedByNameCurrencies
   # Returns grouped currencies with available country counts
   # And remaining country counts for user
   def grouped_by_name(user = nil, options = {})
-    if user
-      grouped_by_name_for_user(user, options)
-    else
-      grouped_by_name_query
-    end
+    user.blank? ? query : user_query(user, options)
   end
 
   private
 
-  def grouped_by_name_for_user(user, options = {})
-    # Visited countries ids
+  def user_query(user, options = {})
+    # Visited country ids
     country_ids = user.appointments.map &:country_id
 
     # Grouped currencies with available and remaining country counts for user
-    currencies = grouped_by_name_query.
-        select('SUM(rc_count) AS remaining_country_count').
-        joins('LEFT OUTER JOIN (SELECT currency_id, COUNT(*) AS rc_count ' +
-                               'FROM countries ' +
-                               "WHERE id NOT IN (#{country_ids.join(',')}) " +
-                               'GROUP BY 1) as rcc ' +
-              'ON rcc.currency_id = currencies.id')
+    if country_ids.any?
+      currencies = with_appointments_query(country_ids)
+    else
+      currencies = without_appointments_query
+    end
 
-    # Return currencies only with not visited countries
+    # Currencies only with not visited countries
     if options[:only_remaining]
-      currencies = currencies.having('remaining_country_count != available_country_count')
+      currencies = only_remaining_query(currencies)
     end
 
     currencies
   end
 
-  def grouped_by_name_query
+  def with_appointments_query(country_ids)
+    query.select('SUM(rc_count) AS remaining_country_count').
+          joins('LEFT OUTER JOIN (SELECT currency_id, COUNT(*) AS rc_count ' +
+                                 'FROM countries ' +
+                                 "WHERE id NOT IN (#{country_ids.join(',')}) " +
+                                 'GROUP BY 1) as rcc ' +
+                'ON rcc.currency_id = currencies.id')
+  end
+
+  def without_appointments_query
+    query.select('SUM(ac_count) AS remaining_country_count')
+  end
+
+  def only_remaining_query(currencies)
+    currencies.having('remaining_country_count IS NOT NULL')
+  end
+
+  def query
     select('name, SUM(ac_count) AS available_country_count').
     joins('INNER JOIN (SELECT currency_id, COUNT(*) AS ac_count
                        FROM countries

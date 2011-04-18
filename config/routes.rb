@@ -4,6 +4,10 @@ Currencies::Application.routes.draw do
   root :to => 'currencies#index'
 
   resources :currencies, :only => :index do
+    collection do
+      get 'remaining'
+    end
+
     resource :country_list, :only => [:edit, :update]
   end
 

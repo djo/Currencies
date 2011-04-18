@@ -19,11 +19,9 @@ describe Currency do
       dollar2 = Factory :currency, :name => 'Dollar'
       euro = Factory :currency, :name => 'Euro'
 
-      usa = Factory :country, :currency => dollar1
-      canada = Factory :country, :currency => dollar2
-      belgium = Factory :country, :currency => euro
-
-      @user.countries << usa
+      @usa = Factory :country, :currency => dollar1
+      @canada = Factory :country, :currency => dollar2
+      @belgium = Factory :country, :currency => euro
     end
 
     it "should return currencies with available country counts" do
@@ -37,6 +35,8 @@ describe Currency do
     end
 
     it "should return currencies with available and remaining country counts" do
+      @user.countries << @usa
+
       dollar, euro = Currency.grouped_by_name(@user)
 
       dollar.name.should == 'Dollar'
@@ -50,6 +50,8 @@ describe Currency do
 
     describe ".grouped_by_name_for" do
       it "should return currencies only with not visited countries" do
+        @user.countries << [@canada, @belgium]
+
         currencies = Currency.grouped_by_name(@user, :only_remaining => true)
         currencies.length.should == 1
 
