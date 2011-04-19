@@ -1,5 +1,5 @@
 class Appointment < ActiveRecord::Base
-  belongs_to :country
+  belongs_to :country, :inverse_of => :appointments
   belongs_to :user
 
   attr_accessible :country_id

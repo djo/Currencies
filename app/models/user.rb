@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
+  # TEST IT
+  accepts_nested_attributes_for :appointments, :allow_destroy => true, :reject_if => :all_blank
+
   protected
 
   def password_required?

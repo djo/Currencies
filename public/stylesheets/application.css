@@ -83,6 +83,14 @@ form ul.countries {
     list-style-type: none;
 }
 
+form ul.countries input.delete {
+    display: none;
+}
+
+form ul.countries li label span {
+    color: #666;
+}
+
 form .buttons {
     margin-top: 1.5em;
 }

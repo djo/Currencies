@@ -7,9 +7,9 @@ Currencies::Application.routes.draw do
     collection do
       get 'remaining'
     end
-
-    resource :country_list, :only => [:edit, :update]
   end
+
+  resources :countries, :only => [:show, :update]
 
   resources :trips, :only => [:index, :new, :create]
   resource :profile, :only => [:edit, :update]

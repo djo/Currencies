@@ -1,0 +1,15 @@
+- title "#{@currency_name} / Countries"
+
+= form_for current_user, :url => country_path(@currency_name), :html => { :method => :put } do |form|
+  = form.error_messages
+
+  %ul.countries
+    = form.fields_for :appointments, @appointments do |appointment_fields|
+      %li
+        = appointment_fields.check_box :country_id, *appointment_check_box_options(appointment_fields.object)
+        = appointment_fields.label :country_id, country_label(appointment_fields.object.country)
+        = appointment_fields.check_box :_destroy, :class => 'delete'
+
+  .buttons
+    = link_to 'Back', currencies_path
+    = form.submit 'Save'
