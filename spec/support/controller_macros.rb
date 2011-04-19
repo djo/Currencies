@@ -1,7 +1,8 @@
 module ControllerMacros
-  def login_user
-    @user = Factory(:user)
-    @request.env["devise.mapping"] = Devise.mappings[:user]
-    sign_in @user
+  def should_deny_unauthenticated_user(&block)
+    it "should deny an unauthenticated user" do
+      instance_eval &block
+      response.should redirect_to(new_user_session_url)
+    end
   end
 end
