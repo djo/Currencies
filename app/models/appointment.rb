@@ -6,4 +6,8 @@ class Appointment < ActiveRecord::Base
 
   validates :country_id, :presence => true, :uniqueness => { :scope => :user_id }
   validates :user_id, :presence => true
+
+  def self.by_currency_name(name)
+    joins(:country => :currency).where('currencies.name' => name)
+  end
 end
