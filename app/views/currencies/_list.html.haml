@@ -11,6 +11,6 @@
     - currencies.each do |currency|
       %tr
         %td= currency.name
-        %td= currency.available_country_count.to_i
+        %td= countries_link currency.name, currency.available_country_count.to_i
         - if user_signed_in?
-          %td= currency.remaining_country_count.to_i
+          %td= countries_link currency.name, currency.remaining_country_count.to_i
