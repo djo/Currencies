@@ -16,4 +16,15 @@ describe Country do
 
   it { should have_db_index(:currency_id) }
   it { should have_db_index(:name) }
+
+  describe ".by_currency_name" do
+    it "should return countries by the currency name" do
+      dollar = Factory :currency, :name => 'Dollar'
+      usa = Factory :country, :currency => dollar
+      canada = Factory :country, :currency => dollar
+      belgium = Factory :country
+
+      Country.by_currency_name('Dollar').should == [usa, canada]
+    end
+  end
 end

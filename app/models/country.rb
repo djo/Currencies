@@ -11,4 +11,8 @@ class Country < ActiveRecord::Base
   validates :currency_id, :presence => true
   validates :name, :presence => true
   validates :code, :presence => true, :uniqueness => true
+
+  def self.by_currency_name(name)
+    joins(:currency).where('currencies.name' => name)
+  end
 end
