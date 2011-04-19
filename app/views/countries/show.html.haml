@@ -8,7 +8,7 @@
       %li
         = appointment_fields.check_box :country_id, *appointment_check_box_options(appointment_fields.object)
         = appointment_fields.label :country_id, country_label(appointment_fields.object.country)
-        = appointment_fields.check_box :_destroy, :class => 'delete'
+        = appointment_fields.check_box :_destroy, { :class => 'delete' }, '1', ''
 
   .buttons
     = link_to 'Back', currencies_path

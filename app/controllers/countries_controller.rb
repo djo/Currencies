@@ -7,6 +7,11 @@ class CountriesController < ApplicationController
   end
 
   def update
+    if current_user.update_attributes params[:user]
+      redirect_to country_url(@currency_name), :notice => 'List successfully changed.'
+    else
+      render :show
+    end
   end
 
   private

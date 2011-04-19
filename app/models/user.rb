@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me,
+                  :appointments_attributes
 
   # TEST IT
   accepts_nested_attributes_for :appointments, :allow_destroy => true, :reject_if => :all_blank
