@@ -6,7 +6,9 @@ class Trip < ActiveRecord::Base
 
   default_scope order('created_at DESC')
 
-  attr_accessible :description, :completed_at
+  attr_accessible :description, :completed_at, :country_trips_attributes
+
+  accepts_nested_attributes_for :country_trips, :reject_if => :all_blank
 
   validates :user_id, :presence => true
   validates :description, :presence => true

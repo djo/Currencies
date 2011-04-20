@@ -1,10 +1,10 @@
 class TripsController < ApplicationController
   before_filter :authenticate_user!, :only => [:new, :create]
-  before_filter :build_country_ids, :only => [:new, :create]
+  before_filter :prepare_summary, :only => :index
+  before_filter :build_country_trips, :only => [:new, :create]
 
   def index
     @trips = Trip.includes :countries
-    @summary = summary
   end
 
   def new
@@ -12,10 +12,9 @@ class TripsController < ApplicationController
   end
 
   def create
-    @trip = Trip.new params[:trip]
+    @trip = current_user.trips.build params[:trip]
 
     if @trip.save
-      add_countries
       redirect_to trips_url, :notice => "Trip successfully added."
     else
       render :action => 'new'
@@ -24,19 +23,12 @@ class TripsController < ApplicationController
 
   private
 
-  def build_country_ids
-    @country_ids = Array(params[:country_ids])
+  def prepare_summary
+    @summary = { :visited_countries => CountryTrip.count(:country_id, :distinct => true),
+                 :dates => Trip.dates }
   end
 
-  def summary
-    { :visited_countries => CountryTrip.count(:country_id, :distinct => true),
-      :dates => Trip.dates }
-  end
-
-  def add_countries
-    @country_ids.each do |id|
-      country = Country.find id
-      @trip.country_trips.create :country => country
-    end
+  def build_country_trips
+    @country_trips = Country.all.map { |c| c.country_trips.build }
   end
 end

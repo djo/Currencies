@@ -1,4 +1,4 @@
-require 'spec_helper'
+require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Country do
   it { should have_many(:country_trips).dependent(:destroy) }

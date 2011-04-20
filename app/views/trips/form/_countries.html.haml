@@ -1,6 +1,6 @@
-- countries.each_slice(countries.size / 2) do |array|
+- country_trips.each_slice(country_trips.size / 2) do |collection|
   %ul.country_list
-    - array.each do |country|
+    = form.fields_for :country_trips, collection do |fields|
       %li
-        = country_check_box_tag country, country_ids
-        = label_tag dom_id(country), country.name
+        = fields.check_box :country_id, { :checked => false }, fields.object.country_id, ''
+        = fields.label :country_id, fields.object.country.name

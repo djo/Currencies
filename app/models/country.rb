@@ -1,5 +1,5 @@
 class Country < ActiveRecord::Base
-  has_many :country_trips, :dependent => :destroy
+  has_many :country_trips, :dependent => :destroy, :inverse_of => :country
   has_many :appointments, :dependent => :destroy, :inverse_of => :country
 
   belongs_to :currency

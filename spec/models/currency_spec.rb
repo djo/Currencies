@@ -1,4 +1,4 @@
-require 'spec_helper'
+require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Currency do
   it { should have_many(:countries).dependent(:destroy) }
