@@ -1,7 +1,7 @@
 = link_to 'Currencies', currencies_path, :class => currency_pages_class
-= link_to 'Trips', trips_path, :class => trip_pages_class
 
 - if user_signed_in?
+  = link_to 'Trips', trips_path, :class => trip_pages_class
   = link_to 'Profile', edit_profile_path, :class => profile_pages_class
   .login_menu
     = current_user.email

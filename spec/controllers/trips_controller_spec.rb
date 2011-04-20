@@ -3,27 +3,61 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe TripsController do
   render_views
 
-  before { sign_in Factory(:user) }
-
-  it "index action should render index template" do
-    get :index
-    response.should render_template(:index)
+  before do
+    @user = Factory :user
+    sign_in @user
   end
 
-  it "new action should render new template" do
-    get :new
-    response.should render_template(:new)
+  describe "#index" do
+    before do
+      @trip = Factory(:country_trip).trip
+    end
+
+    should_deny_unauthenticated_user { do_request }
+
+    it "should prepare trips" do
+      do_request
+      assigns(:trips).should == [@trip]
+    end
+
+    it "should prepare summary" do
+      do_request
+      assigns(:summary).should == { 'visited_countries' => 1, 'dates' => [@trip.completed_at] }
+    end
+
+    def do_request
+      get :index
+    end
   end
 
-  it "create action should render new template when model is invalid" do
-    Trip.any_instance.stubs(:valid?).returns(false)
-    post :create
-    response.should render_template(:new)
+  describe "#new" do
+    should_deny_unauthenticated_user { get(:new) }
+
+    it "should prepare a new trip" do
+      get :new
+      assigns(:trip).should be_instance_of(Trip)
+    end
   end
 
-  it "create action should redirect when model is valid" do
-    Trip.any_instance.stubs(:valid?).returns(true)
-    post :create
-    response.should redirect_to(trips_url)
+  describe "#edit" do
+    should_deny_unauthenticated_user { do_request }
+
+    it "should redirect if updating is successful" do
+      Trip.any_instance.stubs :save => true
+
+      do_request
+      response.should redirect_to(trips_url)
+    end
+
+    it "should render template if updating isn't successful" do
+      Trip.any_instance.stubs :save => false
+
+      do_request
+      response.should render_template(:new)
+    end
+
+    def do_request
+      post :create
+    end
   end
 end

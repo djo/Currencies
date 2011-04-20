@@ -20,11 +20,11 @@ describe Country do
   describe ".by_currency_name" do
     it "should return countries by the currency name" do
       dollar = Factory :currency, :name => 'Dollar'
-      usa = Factory :country, :currency => dollar
-      canada = Factory :country, :currency => dollar
+      usa = Factory :country, :name => 'USA', :currency => dollar
+      canada = Factory :country, :name => 'Canada', :currency => dollar
       belgium = Factory :country
 
-      Country.by_currency_name('Dollar').should == [usa, canada]
+      Country.by_currency_name('Dollar').should == [canada, usa]
     end
   end
 end
