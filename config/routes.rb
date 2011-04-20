@@ -11,7 +11,6 @@ Currencies::Application.routes.draw do
 
   resources :countries, :only => [:show, :update]
   resources :trips, :only => [:index, :new, :create]
-  resource :profile, :only => [:edit, :update]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

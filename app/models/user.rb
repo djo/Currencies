@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_many :countries, :through => :appointments
   has_many :trips, :dependent => :destroy
 
-  devise :database_authenticatable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :rememberable, :trackable, :validatable
 
   attr_accessible :email, :password, :password_confirmation, :remember_me,
                   :appointments_attributes

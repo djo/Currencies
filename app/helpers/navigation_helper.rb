@@ -1,6 +1,6 @@
 module NavigationHelper
   def currency_pages_class
-    if ['currencies', 'country_lists'].include? controller_name
+    if ['currencies', 'countries'].include? controller_name
       'active'
     end
   end
@@ -10,6 +10,6 @@ module NavigationHelper
   end
 
   def profile_pages_class
-    'active' if controller_name == 'profiles'
+    'active' if controller_name == 'registrations'
   end
 end
