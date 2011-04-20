@@ -14,8 +14,9 @@ class Trip < ActiveRecord::Base
   validates :description, :presence => true
   validates :completed_at, :presence => true
 
-  def self.dates
+  def self.dates(user)
     unscoped.select('DISTINCT completed_at').
+             where('user_id' => user.id).
              order('completed_at ASC').
              map &:completed_at
   end

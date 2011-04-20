@@ -4,7 +4,7 @@ class TripsController < ApplicationController
   before_filter :build_country_trips, :only => [:new, :create]
 
   def index
-    @trips = Trip.includes :countries
+    @trips = current_user.trips.includes :countries
   end
 
   def new
@@ -24,8 +24,8 @@ class TripsController < ApplicationController
   private
 
   def prepare_summary
-    @summary = { :visited_countries => CountryTrip.count(:country_id, :distinct => true),
-                 :dates => Trip.dates }
+    @summary = { :visited_countries => CountryTrip.country_count(current_user),
+                 :dates => Trip.dates(current_user) }
   end
 
   def build_country_trips

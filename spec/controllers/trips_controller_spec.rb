@@ -10,7 +10,8 @@ describe TripsController do
 
   describe "#index" do
     before do
-      @trip = Factory(:country_trip).trip
+      @trip = Factory :trip, :user => @user
+      Factory :country_trip, :trip => @trip
     end
 
     should_deny_unauthenticated_user { do_request }

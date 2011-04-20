@@ -9,6 +9,10 @@ class CountryTrip < ActiveRecord::Base
 
   after_create :create_appointment
 
+  def self.country_count(user)
+    count(:country_id, :distinct => true, :joins => :trip, :conditions => { 'trips.user_id' => user.id })
+  end
+
   private
 
   def create_appointment
