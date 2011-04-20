@@ -10,7 +10,6 @@ Currencies::Application.routes.draw do
   end
 
   resources :countries, :only => [:show, :update]
-
   resources :trips, :only => [:index, :new, :create]
   resource :profile, :only => [:edit, :update]
 
