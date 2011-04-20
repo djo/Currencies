@@ -14,7 +14,9 @@ Due to the web service is often unavailable you can get the Currencies Loader Ex
 
 == Acceptance test
 
-These scenarios can help you to verify the applciation. You can pass it on the demo site: http://currencies.heroku.com 
+These scenarios can help you to verify the applciation. You can pass it on the demo site: http://currencies.heroku.com
+
+A lot of scenarios requires registration.
 
 === Identifying available currencies
 
@@ -28,6 +30,7 @@ These scenarios can help you to verify the applciation. You can pass it on the d
 
 === Tracking visited countries
 
+* Sign Up in the application
 * Navigate your browser to the page of a list of countries offering a currency
 * Selects the countries that you have visited for that currency and submit it
 
@@ -47,7 +50,6 @@ These scenarios can help you to verify the applciation. You can pass it on the d
 
 * Navigate your browser to the trips page
 * You should see the list of trips with the summary at the top of the page
-* Sign in as an user to add a new trip
 * Click the "New Trip" link to add a new trip on the trips page
 * You should see the trip form
 * Fill in that and select countries
